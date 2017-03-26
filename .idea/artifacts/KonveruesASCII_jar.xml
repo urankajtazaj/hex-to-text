@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KonveruesASCII:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KonveruesASCII_jar</output-path>
+    <root id="archive" name="KonveruesASCII.jar">
+      <element id="module-output" name="KonveruesASCII" />
+    </root>
+  </artifact>
+</component>
