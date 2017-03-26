@@ -24,15 +24,13 @@ public class Controller implements Initializable {
 
     @FXML private TextField txtFile;
     @FXML Button btZgjedhFile, btKonverto;
-    @FXML
-    TextArea txtArea;
+    @FXML TextArea txtArea;
 
     StringBuilder sb = new StringBuilder();
     StringBuilder merOld = new StringBuilder();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -44,30 +42,22 @@ public class Controller implements Initializable {
                 });
             }
         });
-
         t.setDaemon(true);
 
         btKonverto.setOnAction(e -> {
             t.start();
         });
-
     }
 
     //Choose file
     public void zgjedhFile(Stage stage){
         try {
-
             FileChooser fc = new FileChooser();
             fc.setTitle("Zgjedh dokumentin");
             File file = fc.showOpenDialog(stage);
-
             txtArea.appendText("Dokumenti u hap me sukses.\nKliko 'Konverto' per te filluar\n");
-
             txtFile.setText(file.getAbsolutePath());
-
-        }catch (Exception e) {
-
-        }
+        }catch (Exception e) { }
     }
 
     //Read from and convert to ASCII characters in a new file
@@ -102,52 +92,15 @@ public class Controller implements Initializable {
             txtArea.appendText("Dokumenti u konvertua me sukses.\nMund ta gjesh ne lokacionin e njejte me dokumentin e vjeter.\n" + newFile.getAbsolutePath());
             bw.close();
 
-        }catch (Exception e) {
-
-        }
+        }catch (Exception e) { }
     }
-
-
-    private String ktheNeHex(int n){
-        int rem = 0;
-        while (n > 0) {
-            rem = n % 16;
-            n /= 16;
-
-            switch (rem) {
-                case 10:
-                    sb.append("A");
-                    break;
-                case 11:
-                    sb.append("B");
-                    break;
-                case 12:
-                    sb.append("C");
-                    break;
-                case 13:
-                    sb.append("D");
-                    break;
-                case 14:
-                    sb.append("E");
-                    break;
-                case 15:
-                    sb.append("F");
-                    break;
-                default:
-                    sb.append(rem);
-                    break;
-            }
-        }
-
-        return sb.reverse().toString();
-    }
+    
 
     //Convert from Hex to ASCII
     private int ktheNeDec(String n){
         int j = 0;
         int digit = 0;
         for (int i = n.length()-1; i >= 0; i--) {
-
             switch (n.charAt(i)) {
                 case 'A':
                 case 'a':
@@ -179,9 +132,7 @@ public class Controller implements Initializable {
             }
             j++;
         }
-
         return digit;
     }
-
-
+    
 }
